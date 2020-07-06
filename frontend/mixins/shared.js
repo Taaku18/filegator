@@ -138,7 +138,7 @@ const funcs = {
       return this.hasExtension(name, ['.jpg', '.jpeg', '.gif', '.png', '.bmp', '.tiff', '.tif'])
     },
     isSpreadsheet(name) {
-        return this.hasExtension(name, store.state.config.editable_spreadsheet ? store.state.config.editable_spreadsheet : ['.xls', '.xlsx'])
+        return this.hasExtension(name, store.state.config.spreadsheet ? store.state.config.spreadsheet : ['.xls', '.xlsx'])
     },
     hasExtension(name, exts) {
       return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$', 'i')).test(name)

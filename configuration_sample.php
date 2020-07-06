@@ -15,7 +15,7 @@ return [
         'upload_simultaneous' => 3,
         'default_archive_name' => 'archive.zip',
         'editable' => ['.txt', '.css', '.js', '.ts', '.html', '.php'],
-         'editable_spreadsheet' => ['xls', 'xlsx', 'xlsm', 'xlsb', 'xml', 'csv', 'dif', 'sylk', 'slk', 'prn', dbf', 'ods', 'fods', 'eth'],
+        'spreadsheet' => ['xls', 'xlsx', 'xlsm', 'xlsb', 'xml', 'csv', 'dif', 'sylk', 'slk', 'prn', dbf', 'ods', 'fods', 'eth'],
         'date_format' => 'YY/MM/DD hh:mm:ss', // see: https://momentjs.com/docs/#/displaying/format/
         'guest_redirection' => '', // useful for external auth adapters
     ],

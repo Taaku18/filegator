@@ -7,12 +7,9 @@
         </p>
       </header>
       <section class="modal-card-body preview">
-        <div id="out-table" />
+        <div id="out-table"></div>
       </section>
       <footer class="modal-card-foot">
-        <button v-if="can('write')" class="button" type="button" @click="saveFile()">
-          {{ lang('Save') }}
-        </button>
         <button class="button" type="button" @click="$parent.close()">
           {{ lang('Close') }}
         </button>
@@ -45,27 +42,6 @@
         return out
     }
 
-    function xtos(sdata) {
-        var out = XLSX.utils.book_new()
-        sdata.forEach(function(xws) {
-            var aoa = [[]]
-            var rowobj = xws.rows
-            for(var ri = 0; ri < rowobj.len; ++ri) {
-                var row = rowobj[ri]
-                if(!row) continue
-                aoa[ri] = []
-                Object.keys(row.cells).forEach(function(k) {
-                    var idx = +k
-                    if(isNaN(idx)) return
-                    aoa[ri][idx] = row.cells[k].text
-                })
-            }
-            var ws = XLSX.utils.aoa_to_sheet(aoa)
-            XLSX.utils.book_append_sheet(out, ws, xws.name)
-        })
-        return out
-    }
-
     export default {
         name: 'Spreadsheet',
         props: [ 'item' ],
@@ -87,30 +63,12 @@
                 .then((res) => {
                     let bytes = new Uint8Array(res)
                     let wb = XLSX.read(bytes, {type: 'array'})
-                    self.ss = new Spreadsheet('#out-table')
+                    self.ss = new Spreadsheet('#out-table', {mode: 'read', row: {len: 1500}, col: {len: 104}})
                         .loadData(stox(wb))
                 })
                     .catch(error => this.handleError(error))
         },
         methods: {
-            saveFile() {
-                var wb = xtos(this.ss.getData())
-                var wopts = { bookType:'xlsx', bookSST:false, type:'array' }
-                var wbout = XLSX.write(wb, wopts)
-
-                api.saveContent({
-                    name: this.item.name,
-                    content: wbout,
-                })
-                    .then(() => {
-                        this.$toast.open({
-                            message: this.lang('Updated'),
-                            type: 'is-success',
-                        })
-                        this.$parent.close()
-                    })
-                    .catch(error => this.handleError(error))
-            }
         },
     }
 </script>
