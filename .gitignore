@@ -1,5 +1,7 @@
 /node_modules
 /vendor
+/repository
+!/repository/example.txt
 /dist/css
 /dist/js
 /dist/main.html
