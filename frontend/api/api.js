@@ -192,18 +192,25 @@ const api = {
     })
   },
   downloadItem (params) {
+    if (params.responseType)
+        return new Promise((resolve, reject) => {
+          axios.get('download&path='+encodeURIComponent(Base64.encode(params.path)),
+            {responseType: params.responseType})
+            .then(res => resolve(res.data))
+            .catch(error => reject(error))
+        })
     return new Promise((resolve, reject) => {
-      axios.get('download&path='+encodeURIComponent(Base64.encode(params.path)))
+      axios.get('download&path='+encodeURIComponent(Base64.encode(params.path)),)
         .then(res => resolve(res.data))
         .catch(error => reject(error))
     })
   },
   saveContent (params) {
-    return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
       axios.post('savecontent', {
         name: params.name,
         content: params.content,
-      })
+      },{})
         .then(res => resolve(res.data))
         .catch(error => reject(error))
     })

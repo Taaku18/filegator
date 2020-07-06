@@ -10,12 +10,12 @@ return [
         'app_version' => APP_VERSION,
         'language' => 'english',
         'logo' => 'https://raw.githubusercontent.com/filegator/filegator/master/dist/img/logo.png',
-        'upload_max_size' => 100 * 1024 * 1024, // 100MB
-        'upload_chunk_size' => 1 * 1024 * 1024, // 1MB
-        'upload_simultaneous' => 3,
+        'upload_max_size' => 1024 * 1024 * 1024, // 1GB
+        'upload_chunk_size' => 10 * 1024 * 1024, // 10MB
+        'upload_simultaneous' => 5,
         'default_archive_name' => 'archive.zip',
         'editable' => ['.txt', '.css', '.js', '.ts', '.html', '.php'],
-         'editable_spreadsheet' => ['xls', 'xlsx', 'xlsm', 'xlsb', 'xml', 'csv', 'dif', 'sylk', 'slk', 'prn', dbf', 'ods', 'fods', 'eth'],
+        'editable_spreadsheet' => ['.xls', '.xlsx', '.xlsm', '.xlsb', '.xml', '.csv', '.dif', '.sylk', '.slk', '.prn', '.dbf', '.ods', '.fods', '.eth'],
         'date_format' => 'YY/MM/DD hh:mm:ss', // see: https://momentjs.com/docs/#/displaying/format/
         'guest_redirection' => '', // useful for external auth adapters
     ],

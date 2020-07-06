@@ -6,7 +6,7 @@
 /dist/js
 /dist/main.html
 
-/configuration.php
+#/configuration.php
 
 /tests/backend/coverage
 /tests/backend/tmp/repository/*

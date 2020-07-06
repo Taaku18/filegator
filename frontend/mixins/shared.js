@@ -129,13 +129,16 @@ const funcs = {
       return Vue.config.baseURL+'/download&path='+encodeURIComponent(Base64.encode(path))
     },
     hasPreview(name) {
-      return this.isText(name) || this.isImage(name)
+      return this.isText(name) || this.isImage(name) || this.isSpreadsheet(name)
     },
     isText(name) {
       return this.hasExtension(name, store.state.config.editable ? store.state.config.editable : ['.txt'])
     },
     isImage(name) {
       return this.hasExtension(name, ['.jpg', '.jpeg', '.gif', '.png', '.bmp', '.tiff', '.tif'])
+    },
+    isSpreadsheet(name) {
+        return this.hasExtension(name, store.state.config.editable_spreadsheet ? store.state.config.editable_spreadsheet : ['.xls', '.xlsx'])
     },
     hasExtension(name, exts) {
       return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$', 'i')).test(name)

@@ -160,6 +160,7 @@ import Menu from './partials/Menu'
 import Tree from './partials/Tree'
 import Editor from './partials/Editor'
 import Gallery from './partials/Gallery'
+import Spreadsheet from './partials/Spreadsheet'
 import Search from './partials/Search'
 import Pagination from './partials/Pagination'
 import Upload from './partials/Upload'
@@ -377,6 +378,9 @@ export default {
       }
       if (this.isText(item.path)) {
         modal = Editor
+      }
+      if (this.isSpreadsheet(item.path)) {
+        modal = Spreadsheet
       }
       this.$modal.open({
         parent: this,
